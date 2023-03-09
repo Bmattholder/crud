@@ -1,34 +1,37 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
-import ItemList from './components/ItemList';
-import ItemDetail from './components/ItemDetail';
-import ItemForm from './components/ItemForm';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import InputForm from './components/InputForm';
+import PersonList from './components/PersonList';
 
 function App() {
-  const [items, setItems] = useState([]);
+  const [people, setPeople] = useState([]);
+  const [editPerson, setEditPerson] = useState(null);
 
-  const addItem = (item) => {
-    setItems([...items, item]);
+  const peopleHandler = (person) => {
+    if (editPerson) {
+      const editedPeople = people.map(p => p === editPerson ? person : p);
+      setPeople(editedPeople);
+      setEditPerson(null);
+    } else {
+      setPeople((prevState) => [...prevState, person]);
+    }
+  };
+
+  const handleDelete = (index) => {
+    const updatedPeople = people.filter((_, i) => i !== index);
+    setPeople(updatedPeople);
+  };
+
+  const handleEdit = (index) => {
+    const person = people[index];
+    setEditPerson(person);
   };
 
   return (
-    <Router>
-      <Container className='mt-3'>
-        <Routes>
-          <Route
-            path='/'
-            element={<ItemList items={items} addItem={addItem} />}
-          />
-          <Route path='/items/new' element={<ItemForm addItem={addItem} />} />
-          <Route path='/items/:id' element={<ItemDetail items={items} />} />
-          <Route
-            path='/items/:id/edit'
-            element={<ItemForm items={items} addItem={addItem} />}
-          />
-        </Routes>
-      </Container>
-    </Router>
+    <>
+      <InputForm peopleHandler={peopleHandler} editPerson={editPerson} />
+      <br />
+      <PersonList people={people} handleDelete={handleDelete} handleEdit={handleEdit} />
+    </>
   );
 }
 
