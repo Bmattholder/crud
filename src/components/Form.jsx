@@ -1,55 +1,128 @@
 import React, { useState } from 'react';
-import './Form.css';
+import axios from 'axios';
 
-function Form({ setItems }) {
+function Form() {
   const [formData, setFormData] = useState({
-    crud: '',
-    again: '',
+    // id: '1',
+    praenomens: ['Monogram'],
+    cognomen: 'Docker',
+    number: '123',
+    street: 'Any St',
+    city: 'Franklin',
+    state: 'TN',
+    zip: '37174',
   });
 
-  const { crud, again } = formData;
+  const { id, praenomens, cognomen, number, street, city, state, zip } =
+    formData;
 
   const inputChangeHandler = (e) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      [e.target.name]: e.target.value,
-    }));
+    if (e.target.id === 'praenomens') {
+      setFormData((prevState) => ({
+        ...prevState,
+        [e.target.name]: e.target.value.split(),
+      }));
+    } else {
+      console.log(e);
+      setFormData((prevState) => ({
+        ...prevState,
+        [e.target.name]: e.target.value,
+      }));
+    }
   };
 
-  const submitFormHandler = (e) => {
+  const submitFormHanlder = async (e) => {
     e.preventDefault();
-    setItems((prevItems) => [...prevItems, formData]);
-    setFormData({
-      crud: '',
-      again: '',
-    });
+    console.log('Form Data: ', formData);
+    await axios
+      .post('http://localhost:8080/api/v1/people', formData)
+      .then(console.log(Response.data));
   };
 
   return (
-    <div className='container'>
-      <form onSubmit={submitFormHandler}>
+    <form onSubmit={submitFormHanlder}>
+      {/* <div>
         <input
           type='text'
-          id='crud'
-          name='crud'
-          placeholder='Crud'
-          value={crud}
+          id='id'
+          name='id'
+          value={id}
           onChange={inputChangeHandler}
+          placeholder='id'
         />
+      </div> */}
+      <div>
+        <input
+          type='textarea'
+          id='praenomens'
+          name='praenomens'
+          value={praenomens}
+          onChange={inputChangeHandler}
+          placeholder='Praenomens'
+        />
+      </div>
+      <div>
         <input
           type='text'
-          id='again'
-          name='again'
-          placeholder='Again'
-          value={again}
+          id='cognomen'
+          name='cognomen'
+          value={cognomen}
           onChange={inputChangeHandler}
-        />{' '}
-        <br />
-        <button type='submit' className='btn'>
-          Submit
-        </button>
-      </form>
-    </div>
+          placeholder='Cognomen'
+        />
+      </div>
+      <div>
+        <input
+          type='text'
+          id='number'
+          name='number'
+          value={number}
+          onChange={inputChangeHandler}
+          placeholder='Number'
+        />
+      </div>
+      <div>
+        <input
+          type='text'
+          id='street'
+          name='street'
+          value={street}
+          onChange={inputChangeHandler}
+          placeholder='Street'
+        />
+      </div>
+      <div>
+        <input
+          type='text'
+          id='city'
+          name='city'
+          value={city}
+          onChange={inputChangeHandler}
+          placeholder='city'
+        />
+      </div>
+      <div>
+        <input
+          type='text'
+          id='state'
+          name='state'
+          value={state}
+          onChange={inputChangeHandler}
+          placeholder='State'
+        />
+      </div>
+      <div>
+        <input
+          type='text'
+          id='zip'
+          name='zip'
+          value={zip}
+          onChange={inputChangeHandler}
+          placeholder='Zip'
+        />
+      </div>
+      <button>Submit</button>
+    </form>
   );
 }
 

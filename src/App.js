@@ -1,7 +1,4 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import InputForm from './components/InputForm';
-import PersonList from './components/PersonList';
+import Form from "./components/Form";
 
 function App() {
   const [people, setPeople] = useState([]);
@@ -29,11 +26,9 @@ function App() {
   };
 
   return (
-    <>
-      <InputForm peopleHandler={peopleHandler} editPerson={editPerson} />
-      <br />
-      <PersonList people={people} handleDelete={handleDelete} handleEdit={handleEdit} />
-    </>
+   <div>
+    <Form />
+   </div>
   );
 }
 
