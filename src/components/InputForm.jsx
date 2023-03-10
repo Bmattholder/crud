@@ -31,6 +31,7 @@ function InputForm({ peopleHandler, editPerson }) {
       peopleHandler(formData, editPerson.index);
     } else {
       peopleHandler(formData);
+			
     }
     setFormData({
       firstName: '',

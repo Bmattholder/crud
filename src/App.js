@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, { useState } from 'react';
 import InputForm from './components/InputForm';
 import PersonList from './components/PersonList';
@@ -6,12 +7,13 @@ function App() {
   const [people, setPeople] = useState([]);
   const [editPerson, setEditPerson] = useState(null);
 
-  const peopleHandler = (person) => {
+  const peopleHandler = async (person) => {
     if (editPerson) {
       const editedPeople = people.map(p => p === editPerson ? person : p);
       setPeople(editedPeople);
       setEditPerson(null);
     } else {
+      await axios.post('http://localhost:8080/api/v1/people', {person})
       setPeople((prevState) => [...prevState, person]);
     }
   };
