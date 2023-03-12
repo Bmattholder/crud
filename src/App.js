@@ -1,10 +1,13 @@
-import Form from "./components/Form";
+import PeopleForm from './components/PeopleForm';
+import PeopleList from './components/PeopleList';
 
 function App() {
   return (
-   <div>
-    <Form />
-   </div>
+    <>
+      <PeopleForm />
+      <br />
+      <PeopleList />
+    </>
   );
 }
 
