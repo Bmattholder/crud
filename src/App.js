@@ -1,47 +1,24 @@
 import { useState } from 'react';
-import Form from './components/Form';
-import List from './components/List';
-
+import PersonForm from './components/PersonForm';
+import PersonList from './components/PersonList';
 
 function App() {
-  const [peopleArray, setPeopleArray] = useState([
-    {
-      id: 1,
-      name: 'johnny',
-    },
-    {
-      id: 2,
-      name: 'sally',
-    },
-  ]);
+  const [triggered, setTriggered] = useState(false);
 
-  const addPerson = (formData) => {
-    setPeopleArray((prevState) => [
-      ...prevState,
-      {
-        id: formData.id,
-        name: formData.name,
-      },
-    ]);
+  const [editPerson, setEditPerson] = useState();
+
+  const triggeredHandler = () => {
+    setTriggered(!triggered);
   };
 
-  const updatePerson = (id, name) => {
-    setPeopleArray((prevState) =>
-      prevState.map((person) =>
-        person.id === id ? { ...person, name: name } : person
-      )
-    );
-  };
-
-  const deletePerson = (id) => {
-    setPeopleArray((prevState) => prevState.filter((person) => person.id !== id));
+  const editPersonHandler = (data) => {
+    setEditPerson(data);
   };
 
   return (
     <>
-      <Form functionToPass={addPerson} />
-      <br />
-      <List peopleArray={peopleArray} updatePerson={updatePerson} deletePerson={deletePerson} />
+      <PersonForm triggeredHandler={triggeredHandler} editPerson={editPerson} />
+      <PersonList triggered={triggered} editPersonHandler={editPersonHandler} />
     </>
   );
 }
