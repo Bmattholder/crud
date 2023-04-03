@@ -1,56 +1,39 @@
-import React, { useState } from 'react';
-import './List.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import Person from "./Person";
 
-function List({ peopleArray, updatePerson, deletePerson }) {
-  const [editId, setEditId] = useState(null);
-  const [editName, setEditName] = useState('');
+function List(props) {
+  const [peopleList, setPeopleList] = useState([]);
+  const [toggle, setToggle] = useState(false);
 
-  const editPerson = (person) => {
-    setEditId(person.id);
-    setEditName(person.name);
+  const toggleHelper = () => {
+    setToggle(!toggle);
   };
 
-  const savePerson = (e) => {
-    e.preventDefault();
-    updatePerson(editId, editName);
-    setEditId(null);
-    setEditName('');
-  };
-
-  const cancelEdit = () => {
-    setEditId(null);
-    setEditName('');
-  };
-
-  const handleDelete = (person) => {
-    deletePerson(person.id);
-  };
+  useEffect(() => {
+    const getData = async () => {
+      const res = await axios.get("http://localhost:8080/api/v1/people");
+      const data = res.data;
+      setPeopleList(data.content);
+    };
+    getData();
+  }, [toggle]);
 
   return (
     <>
-      {peopleArray &&
-        peopleArray.map((person) => (
-          <div className='container' key={person.id}>
-            {editId === person.id ? (
-              <>
-                <input
-                  type='text'
-                  value={editName}
-                  onChange={(e) => setEditName(e.target.value)}
-                />
-                <button onClick={savePerson}>Save</button>
-                <button onClick={cancelEdit}>Cancel</button>
-              </>
-            ) : (
-              <>
-                <h2>{person.name}</h2>
-                <p>{person.id}</p>
-                <button onClick={() => editPerson(person)}>Edit</button>
-                <button onClick={() => handleDelete(person)}>Delete</button>
-              </>
-            )}
-          </div>
-        ))}
+      {peopleList.map((person) => {
+        return (
+          <Person
+            key={person.id}
+            id={person.id}
+            firstName={person.personalName.givenNames[0].value}
+            lastName={person.personalName.surname.value}
+            address={person.address}
+            toggleHelper={toggleHelper}
+          />
+        );
+      })}
+
     </>
   );
 }
