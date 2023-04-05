@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bfd363e8-4597-4c36-85ea-f4a49569739c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Header.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/Form.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/Home.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/People.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PeopleForm.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Person.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
@@ -50,7 +51,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "prettierjs.PrettierConfiguration.Package": "/Users/bmattholder/.nvm/versions/node/v16.13.0/lib/node_modules/prettier",
-    "settings.editor.selected.configurable": "actions.on.save",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -63,7 +64,8 @@
       <option name="presentableId" value="Default" />
       <updated>1680528219819</updated>
       <workItem from="1680528222546" duration="3222000" />
-      <workItem from="1680611070655" duration="2300000" />
+      <workItem from="1680611070655" duration="2594000" />
+      <workItem from="1680698634478" duration="2930000" />
     </task>
     <servers />
   </component>

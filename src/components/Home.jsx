@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import People from "./People";
+import Person from "./Person";
 
 function Home(props) {
-  const [toggle, setToggle] = useState(false);
   const [peopleList, setPeopleList] = useState([]);
+  const [refreshList, setRefreshList] = useState(false);
 
-  const toggleHelper = () => {
-    setToggle(!toggle);
+  const refreshHelper = () => {
+    setRefreshList(!refreshList);
   };
 
   useEffect(() => {
@@ -17,19 +17,19 @@ function Home(props) {
       setPeopleList(data.content);
     };
     getPeople();
-  }, [toggle]);
+  }, [refreshList]);
 
   return (
     <>
       {peopleList.map((person) => {
         return (
-          <People
+          <Person
             key={person.id}
             id={person.id}
             firstName={person.personalName.givenNames[0].value}
             lastName={person.personalName.surname.value}
             address={person.address}
-            toggleHelper={toggleHelper}
+            refreshHelper={refreshHelper}
           />
         );
       })}

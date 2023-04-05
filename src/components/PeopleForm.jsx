@@ -1,142 +1,113 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function PeopleForm() {
+function PeopleForm(props) {
   const [formData, setFormData] = useState({
-    praenomens: [''],
-    cognomen: '',
-    number: '123',
-    street: 'Any St',
-    city: 'Nashville',
-    state: 'TN',
-    zip: '37174',
+    praenomens: "",
+    cognomen: "",
+    number: "",
+    street: "",
+    city: "",
+    state: "",
+    zip: "",
   });
 
   const { praenomens, cognomen, number, street, city, state, zip } = formData;
 
-  const inputChangeHandler = (e) => {
-    if (e.target.id === 'praenomens') {
-      const value = e.target.value.trim();
-      if (value !== praenomens[0]) {
-        setFormData((prevState) => ({
-          ...prevState,
-          [e.target.name]: value.split(),
-        }));
-      }
+  const navigate = useNavigate();
+
+  const onChange = (e) => {
+    if (e.target.name === "praenomens") {
+      setFormData((z) => ({
+        ...z,
+        [e.target.name]: e.target.value.split(),
+      }));
     } else {
-      setFormData((prevState) => ({
-        ...prevState,
+      setFormData((z) => ({
+        ...z,
         [e.target.name]: e.target.value,
       }));
     }
   };
 
-  const submitHandler = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
-    fetch('http://localhost:8080/api/v1/people', {
-      method: 'POST',
-      body: JSON.stringify(formData),
-      headers: { 'Content-type': 'application/json; charset=UTF-8' },
-    })
-      .then((res) => res.json())
-      .then((json) => console.log(json));
-    setFormData({
-      praenomens: [''],
-      cognomen: '',
-      number: '123',
-      street: 'Any St',
-      city: 'Nashville',
-      state: 'TN',
-      zip: '37174',
-    });
+
+    const res = await axios.post(
+      "http://localhost:8080/api/v1/people",
+      formData
+    );
+    console.log(res);
+    navigate("/");
   };
 
   return (
-    <form onSubmit={submitHandler}>
-      <div>
-        <input
-          type='text'
-          name='praenomens'
-          id='praenomens'
-          value={praenomens[0]}
-          onChange={inputChangeHandler}
-          placeholder='Praenomens'
-          minLength={1}
-          required
-        />
-      </div>
-      <div>
-        <input
-          type='text'
-          name='cognomen'
-          id='cognomen'
-          value={cognomen}
-          onChange={inputChangeHandler}
-          placeholder='Cognomen'
-          minLength={1}
-          required
-        />
-      </div>
-      <div>
-        <input
-          type='text'
-          name='number'
-          id='number'
-          value={number}
-          onChange={inputChangeHandler}
-          placeholder='Number'
-          minLength={1}
-          required
-        />
-      </div>
-      <div>
-        <input
-          type='text'
-          name='street'
-          id='street'
-          value={street}
-          onChange={inputChangeHandler}
-          placeholder='Street'
-          minLength={1}
-          required
-        />
-      </div>
-      <div>
-        <input
-          type='text'
-          name='city'
-          id='city'
-          value={city}
-          onChange={inputChangeHandler}
-          placeholder='City'
-          minLength={1}
-          required
-        />
-      </div>
-      <div>
-        <input
-          type='text'
-          name='state'
-          id='state'
-          value={state}
-          onChange={inputChangeHandler}
-          placeholder='State'
-          minLength={1}
-          required
-        />
-      </div>
-      <div>
-        <input
-          type='text'
-          name='zip'
-          id='zip'
-          value={zip}
-          onChange={inputChangeHandler}
-          placeholder='Zip'
-          minLength={1}
-          required
-        />
-      </div>
-      <button type='submit'>Submit</button>
+    <form onSubmit={onSubmit}>
+      <input
+        type="text"
+        name="praenomens"
+        id="praenomens"
+        value={praenomens}
+        placeholder="praenomens"
+        onChange={onChange}
+        required
+      />
+      <input
+        type="text"
+        name="cognomen"
+        id="cognomen"
+        value={cognomen}
+        placeholder="cognomen"
+        onChange={onChange}
+        required
+      />
+      <input
+        type="text"
+        name="number"
+        id="number"
+        value={number}
+        placeholder="number"
+        onChange={onChange}
+        required
+      />
+      <input
+        type="text"
+        name="street"
+        id="street"
+        value={street}
+        placeholder="street"
+        onChange={onChange}
+        required
+      />
+      <input
+        type="text"
+        name="city"
+        id="city"
+        value={city}
+        placeholder="city"
+        onChange={onChange}
+        required
+      />
+      <input
+        type="text"
+        name="state"
+        id="state"
+        value={state}
+        placeholder="state"
+        onChange={onChange}
+        required
+      />
+      <input
+        type="text"
+        name="zip"
+        id="zip"
+        value={zip}
+        placeholder="zip"
+        onChange={onChange}
+        required
+      />
+      <button>Submit</button>
     </form>
   );
 }
