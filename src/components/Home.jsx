@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Person from "./Person";
 
-function Home(props) {
+function Home() {
   const [peopleList, setPeopleList] = useState([]);
   const [refreshList, setRefreshList] = useState(false);
 
@@ -29,7 +29,7 @@ function Home(props) {
             firstName={person.personalName.givenNames[0].value}
             lastName={person.personalName.surname.value}
             address={person.address}
-            refreshHelper={refreshHelper}
+            refresh={refreshHelper}
           />
         );
       })}

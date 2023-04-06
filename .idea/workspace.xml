@@ -7,8 +7,8 @@
     <list default="true" id="bfd363e8-4597-4c36-85ea-f4a49569739c" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/components/Header.jsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/Home.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/components/PeopleForm.jsx" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/src/components/Person.jsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/PersonForm.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
@@ -65,7 +65,7 @@
       <updated>1680528219819</updated>
       <workItem from="1680528222546" duration="3222000" />
       <workItem from="1680611070655" duration="2594000" />
-      <workItem from="1680698634478" duration="2930000" />
+      <workItem from="1680782363194" duration="4504000" />
     </task>
     <servers />
   </component>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-function Person({ id, firstName, lastName, address, refreshHelper }) {
+function Person({ id, firstName, lastName, address, refresh }) {
   const [editMode, setEditMode] = useState(false);
-  const [editPerson, setEditPerson] = useState({
+  const [editingPerson, setEditingPerson] = useState({
     praenomens: firstName,
     cognomen: lastName,
     number: address.number,
@@ -13,44 +13,11 @@ function Person({ id, firstName, lastName, address, refreshHelper }) {
     zip: address.zip,
   });
 
-  const { praenomens, cognomen, number, street, city, state, zip } = editPerson;
+  const { praenomens, cognomen, number, street, city, state, zip } =
+    editingPerson;
 
-  const onChange = (e) => {
-    if (e.target.name === "praenomens") {
-      setEditPerson((p) => ({
-        ...p,
-        [e.target.name]: e.target.value.split(),
-      }));
-    } else {
-      setEditPerson((p) => ({
-        ...p,
-        [e.target.name]: e.target.value,
-      }));
-    }
-  };
-
-  const submitEdit = async (e, id) => {
-    e.preventDefault();
-
-    const res = await axios.patch(
-      "http://localhost:8080/api/v1/people/" + id,
-      editPerson
-    );
-    console.log(res);
-    setEditMode(!editMode);
-    refreshHelper();
-  };
-
-  const deleteHandler = async (e, id) => {
-    e.preventDefault();
-
-    const res = await axios.delete("http://localhost:8080/api/v1/people/" + id);
-    console.log(res);
-    refreshHelper();
-  };
-
-  const cancelEdit = () => {
-    setEditPerson({
+  const resetState = () => {
+    setEditingPerson({
       praenomens: firstName,
       cognomen: lastName,
       number: address.number,
@@ -59,8 +26,39 @@ function Person({ id, firstName, lastName, address, refreshHelper }) {
       state: address.state,
       zip: address.zip,
     });
-
     setEditMode(!editMode);
+  };
+
+  const submitEdit = async (e, id) => {
+    e.preventDefault();
+    const res = await axios.patch(
+      "http://localhost:8080/api/v1/people/" + id,
+      editingPerson
+    );
+    console.log(res);
+    refresh();
+    setEditMode(!editMode);
+  };
+
+  const onChange = (e) => {
+    if (e.target.name === "praenomens") {
+      setEditingPerson((z) => ({
+        ...z,
+        [e.target.name]: e.target.value.split(),
+      }));
+    } else {
+      setEditingPerson((z) => ({
+        ...z,
+        [e.target.name]: e.target.value,
+      }));
+    }
+  };
+
+  const deletePerson = async (e, id) => {
+    e.preventDefault();
+    const res = await axios.delete("http://localhost:8080/api/v1/people/" + id);
+    console.log(res);
+    refresh();
   };
 
   return (
@@ -68,85 +66,85 @@ function Person({ id, firstName, lastName, address, refreshHelper }) {
       {!editMode ? (
         <>
           <h1>
-            {id}: {firstName} {lastName}
+            {id} {firstName} {lastName}
           </h1>
           <p>
-            {address.number} {address.street} {address.city} {address.state}{" "}
-            {address.zip}
+            {address.number} {address.street}
+          </p>
+          <p>
+            {address.city} {address.state} {address.zip}
           </p>
           <button onClick={() => setEditMode(!editMode)}>Edit</button>
-          <button onClick={(e) => deleteHandler(e, id)}>Delete</button>
+          <button onClick={(e) => deletePerson(e, id)}>Delete</button>
         </>
       ) : (
-        <>
-          <form>
-            <input
-              type="text"
-              name="praenomens"
-              id="praenomens"
-              value={praenomens}
-              placeholder="praenomens"
-              onChange={onChange}
-              required
-            />
-            <input
-              type="text"
-              name="cognomen"
-              id="cognomen"
-              value={cognomen}
-              placeholder="cognomen"
-              onChange={onChange}
-              required
-            />
-            <input
-              type="text"
-              name="number"
-              id="number"
-              value={number}
-              placeholder="number"
-              onChange={onChange}
-              required
-            />
-            <input
-              type="text"
-              name="street"
-              id="street"
-              value={street}
-              placeholder="street"
-              onChange={onChange}
-              required
-            />
-            <input
-              type="text"
-              name="city"
-              id="city"
-              value={city}
-              placeholder="city"
-              onChange={onChange}
-              required
-            />
-            <input
-              type="text"
-              name="state"
-              id="state"
-              value={state}
-              placeholder="state"
-              onChange={onChange}
-              required
-            />
-            <input
-              type="text"
-              name="zip"
-              id="zip"
-              value={zip}
-              placeholder="zip"
-              onChange={onChange}
-              required
-            />
-            <button onClick={(e) => submitEdit(e, id)}>Submit Edit</button>
-            <button onClick={cancelEdit}>Cancel</button>
-          </form>
-        </>
+        <form>
+          <input
+            type="text"
+            name="praenomens"
+            id="praenomens"
+            value={praenomens}
+            onChange={onChange}
+            placeholder="praenomens"
+            required
+          />
+          <input
+            type="text"
+            name="cognomen"
+            id="cognomen"
+            value={cognomen}
+            onChange={onChange}
+            placeholder="cognomen"
+            required
+          />
+          <input
+            type="text"
+            name="number"
+            id="number"
+            value={number}
+            onChange={onChange}
+            placeholder="number"
+            required
+          />
+          <input
+            type="text"
+            name="street"
+            id="street"
+            value={street}
+            onChange={onChange}
+            placeholder="street"
+            required
+          />
+          <input
+            type="text"
+            name="city"
+            id="city"
+            value={city}
+            onChange={onChange}
+            placeholder="city"
+            required
+          />
+          <input
+            type="text"
+            name="state"
+            id="state"
+            value={state}
+            onChange={onChange}
+            placeholder="state"
+            required
+          />
+          <input
+            type="text"
+            name="zip"
+            id="zip"
+            value={zip}
+            onChange={onChange}
+            placeholder="zip"
+            required
+          />
+          <button onClick={(e) => submitEdit(e, id)}>Submit Edit</button>
+          <button onClick={resetState}>Cancel</button>
+        </form>
       )}
     </div>
   );
