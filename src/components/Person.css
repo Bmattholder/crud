@@ -1,0 +1,52 @@
+.card {
+    background-color: #434343;
+    color: #8d8a8a;
+    width: 20rem;
+    text-align: center;
+    margin: 1.5rem auto;
+    padding: .5rem;
+    border-radius: 12px;
+    border: 0;
+    box-shadow: 0 0 10px goldenrod;
+}
+
+.card input {
+    width: 90%;
+    background-color: #8d8a8a;
+    color: #ccc2c2;
+    font-size: medium;
+    border: 0;
+    margin: .1rem;
+    border-radius: 3px;
+}
+
+.card input::placeholder {
+    color: #ccc2c2;
+}
+
+.card input:focus{
+    outline: 0;
+    border-bottom: 2px solid goldenrod;
+}
+
+.card button {
+    margin: .25rem;
+    padding: .5rem;
+    border: 0;
+    border-radius: 7px;
+    background-color: #8d8a8a;
+    color: goldenrod;
+    font-size: medium;
+}
+
+.card button:hover {
+    background-color: goldenrod;
+    color: #8d8a8a;
+    transition: .4s;
+}
+
+.card-form {
+    margin-top: 10%;
+    padding: 1rem;
+
+}

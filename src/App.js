@@ -1,15 +1,14 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
+import Nav from "./components/Nav";
 import Home from "./components/Home";
-import PersonForm from "./components/PersonForm";
-
+import NewPersonForm from "./components/NewPersonForm";
 function App() {
   return (
     <Router>
-      <Header />
+      <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/form" element={<PersonForm />} />
+        <Route path="/form" element={<NewPersonForm />} />
       </Routes>
     </Router>
   );
