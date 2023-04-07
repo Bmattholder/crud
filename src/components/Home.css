@@ -1,0 +1,116 @@
+.select-option {
+    width: 15%;
+    text-align: center;
+    color: goldenrod;
+}
+
+.select-option select {
+    background-color: #242424;
+    color: goldenrod;
+    border: 0;
+    font-size: medium;
+}
+
+.select-option select:focus {
+    outline: 0;
+    border-bottom: 1px solid goldenrod;
+}
+
+.page-numbers {
+    display: flex;
+    justify-content: center;
+    height: 2rem;
+    width: 25%;
+    margin: 1rem auto;
+}
+
+.page-numbers button {
+    margin: .1rem;
+    border: 0;
+    border-radius: 7px;
+    background-color: #8d8a8a;
+    color: goldenrod;
+    font-size: medium;
+}
+
+.page-numbers button:hover {
+    background-color: goldenrod;
+    color: #8d8a8a;
+    transition: .4s;
+}
+
+.page-numbers button:disabled{
+    cursor: not-allowed;
+    background-color: #8d8a8a;
+    color: #484646;
+}
+
+.page-numbers .active {
+    background-color: goldenrod;
+    color: #8d8a8a;
+}
+
+.page-numbers .inactive {
+    color: goldenrod;
+    background-color: #8d8a8a;
+}
+
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.filter-search {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.search {
+    margin-right: 1rem;
+}
+
+.search button {
+    margin: .25rem;
+    padding: .3rem;
+    border: 0;
+    border-radius: 7px;
+    background-color: #8d8a8a;
+    color: goldenrod;
+}
+
+.search input {
+    background-color: #8d8a8a;
+    color: goldenrod;
+    font-size: medium;
+    border: 0;
+    margin: .1rem;
+    padding: .25rem;
+    border-radius: 3px;
+}
+
+.search input::placeholder {
+    color: goldenrod;
+}
+
+.search input:focus {
+    outline: 0;
+    border-bottom: 2px solid goldenrod;
+}
+
+
+.sort {
+    margin-right: 1rem;
+    color: goldenrod;
+}
+
+.sort button {
+    margin: .25rem;
+    padding: .3rem;
+    border: 0;
+    border-radius: 7px;
+    background-color: #8d8a8a;
+    color: goldenrod;
+    font-size: large;
+}
