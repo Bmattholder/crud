@@ -1,0 +1,22 @@
+.main {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #434343;
+    height: 2rem;
+    align-items: center;
+    position: sticky;
+    top: 0;
+}
+
+.main a {
+    text-decoration: none;
+    color: white;
+}
+
+.main a:hover {
+    color: goldenrod;
+}
+
+.main .active {
+    color: goldenrod;
+}

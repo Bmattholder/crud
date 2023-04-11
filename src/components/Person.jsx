@@ -76,7 +76,7 @@ function Person({ id, firstName, lastName, address, refresh }) {
           <p>
             {city} {state} {zip}
           </p>
-          <button onClick={() => setEditMode(!editMode)}>Edit</button>
+          a<button onClick={() => setEditMode(!editMode)}>Edit</button>
           <button onClick={(e) => deletePerson(e, id)}>Delete</button>
         </>
       ) : (
