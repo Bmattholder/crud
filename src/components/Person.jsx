@@ -18,13 +18,13 @@ function Person({ id, firstName, lastName, address, refresh }) {
 
   const onChange = (e) => {
     if (e.target.name === "praenomens") {
-      setEditingPerson((z) => ({
-        ...z,
+      setEditingPerson((s) => ({
+        ...s,
         [e.target.name]: e.target.value.split(),
       }));
     } else {
-      setEditingPerson((z) => ({
-        ...z,
+      setEditingPerson((s) => ({
+        ...s,
         [e.target.name]: e.target.value,
       }));
     }
@@ -42,7 +42,8 @@ function Person({ id, firstName, lastName, address, refresh }) {
     refresh();
   };
 
-  const cancelEditHelper = () => {
+  const cancelEdit = () => {
+    setEditMode(!editMode);
     setEditingPerson({
       praenomens: firstName,
       cognomen: lastName,
@@ -52,7 +53,6 @@ function Person({ id, firstName, lastName, address, refresh }) {
       state: address.state,
       zip: address.zip,
     });
-    setEditMode(!editMode);
   };
 
   const deletePerson = async (e, id) => {
@@ -68,7 +68,7 @@ function Person({ id, firstName, lastName, address, refresh }) {
       {!editMode ? (
         <>
           <h1>
-            {id} {firstName} {lastName}
+            {id}: {firstName} {lastName}
           </h1>
           <p>
             {number} {street}
@@ -76,7 +76,7 @@ function Person({ id, firstName, lastName, address, refresh }) {
           <p>
             {city} {state} {zip}
           </p>
-          a<button onClick={() => setEditMode(!editMode)}>Edit</button>
+          <button onClick={() => setEditMode(!editMode)}>Edit</button>
           <button onClick={(e) => deletePerson(e, id)}>Delete</button>
         </>
       ) : (
@@ -85,60 +85,67 @@ function Person({ id, firstName, lastName, address, refresh }) {
             type="text"
             name="praenomens"
             id="praenomens"
-            placeholder="praenomens"
             value={praenomens}
             onChange={onChange}
-          />{" "}
+            placeholder="Praenomens"
+            required
+          />
           <input
             type="text"
             name="cognomen"
             id="cognomen"
-            placeholder="cognomen"
             value={cognomen}
             onChange={onChange}
-          />{" "}
+            placeholder="Cognomen"
+            required
+          />
           <input
             type="text"
             name="number"
             id="number"
-            placeholder="number"
             value={number}
             onChange={onChange}
-          />{" "}
+            placeholder="Number"
+            required
+          />
           <input
             type="text"
             name="street"
             id="street"
-            placeholder="street"
             value={street}
             onChange={onChange}
-          />{" "}
+            placeholder="Street"
+            required
+          />
           <input
             type="text"
             name="city"
             id="city"
-            placeholder="city"
             value={city}
             onChange={onChange}
-          />{" "}
+            placeholder="City"
+            required
+          />
           <input
             type="text"
             name="state"
             id="state"
-            placeholder="state"
             value={state}
             onChange={onChange}
-          />{" "}
+            placeholder="State"
+            required
+          />
           <input
             type="text"
             name="zip"
             id="zip"
-            placeholder="zip"
             value={zip}
             onChange={onChange}
+            placeholder="Zip"
+            required
           />
           <button onClick={(e) => submitEdit(e, id)}>Submit Edit</button>
-          <button onClick={cancelEditHelper}>Cancel</button>
+          <button onClick={cancelEdit}>Cancel</button>
         </form>
       )}
     </div>

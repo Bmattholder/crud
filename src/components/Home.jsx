@@ -4,7 +4,7 @@ import Person from "./Person";
 
 function Home(props) {
   const [peopleList, setPeopleList] = useState([]);
-  const [refreshView, setRefreshView] = useState(false);
+  const [refreshList, setRefreshList] = useState(false);
 
   useEffect(() => {
     const getData = async () => {
@@ -13,10 +13,10 @@ function Home(props) {
       setPeopleList(data.content);
     };
     getData();
-  }, [refreshView]);
+  }, [refreshList]);
 
   const refreshHelper = () => {
-    setRefreshView(!refreshView);
+    setRefreshList(!refreshList);
   };
 
   return (

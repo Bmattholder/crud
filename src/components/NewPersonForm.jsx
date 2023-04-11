@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-function NewPersonForm(props) {
+function NewPersonForm() {
   const [formData, setFormData] = useState({
-    praenomens: [""],
+    praenomens: "",
     cognomen: "",
     number: "",
     street: "",
@@ -19,13 +19,13 @@ function NewPersonForm(props) {
 
   const onChange = (e) => {
     if (e.target.name === "praenomens") {
-      setFormData((z) => ({
-        ...z,
+      setFormData((p) => ({
+        ...p,
         [e.target.name]: e.target.value.split(),
       }));
     } else {
-      setFormData((z) => ({
-        ...z,
+      setFormData((p) => ({
+        ...p,
         [e.target.name]: e.target.value,
       }));
     }
@@ -39,6 +39,7 @@ function NewPersonForm(props) {
       formData
     );
     console.log(res);
+
     navigate("/");
   };
 
@@ -48,57 +49,64 @@ function NewPersonForm(props) {
         type="text"
         name="praenomens"
         id="praenomens"
-        placeholder="praenomens"
         value={praenomens}
         onChange={onChange}
-      />{" "}
+        placeholder="Praenomens"
+        required
+      />
       <input
         type="text"
         name="cognomen"
         id="cognomen"
-        placeholder="cognomen"
         value={cognomen}
         onChange={onChange}
-      />{" "}
+        placeholder="Cognomen"
+        required
+      />
       <input
         type="text"
         name="number"
         id="number"
-        placeholder="number"
         value={number}
         onChange={onChange}
-      />{" "}
+        placeholder="Number"
+        required
+      />
       <input
         type="text"
         name="street"
         id="street"
-        placeholder="street"
         value={street}
         onChange={onChange}
-      />{" "}
+        placeholder="Street"
+        required
+      />
       <input
         type="text"
         name="city"
         id="city"
-        placeholder="city"
         value={city}
         onChange={onChange}
-      />{" "}
+        placeholder="City"
+        required
+      />
       <input
         type="text"
         name="state"
         id="state"
-        placeholder="state"
         value={state}
         onChange={onChange}
-      />{" "}
+        placeholder="State"
+        required
+      />
       <input
         type="text"
         name="zip"
         id="zip"
-        placeholder="zip"
         value={zip}
         onChange={onChange}
+        placeholder="Zip"
+        required
       />
       <button>Submit</button>
     </form>
