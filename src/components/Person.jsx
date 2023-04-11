@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-import "./Person.css";
-
 function Person({ id, firstName, lastName, address, refresh }) {
   const [editMode, setEditMode] = useState(false);
   const [editingPerson, setEditingPerson] = useState({
@@ -20,13 +18,13 @@ function Person({ id, firstName, lastName, address, refresh }) {
 
   const onChange = (e) => {
     if (e.target.name === "praenomens") {
-      setEditingPerson((p) => ({
-        ...p,
+      setEditingPerson((z) => ({
+        ...z,
         [e.target.name]: e.target.value.split(),
       }));
     } else {
-      setEditingPerson((p) => ({
-        ...p,
+      setEditingPerson((z) => ({
+        ...z,
         [e.target.name]: e.target.value,
       }));
     }
@@ -40,11 +38,11 @@ function Person({ id, firstName, lastName, address, refresh }) {
       editingPerson
     );
     console.log(res);
-    refresh();
     setEditMode(!editMode);
+    refresh();
   };
 
-  const cancelHelper = () => {
+  const cancelEditHelper = () => {
     setEditingPerson({
       praenomens: firstName,
       cognomen: lastName,
@@ -66,81 +64,81 @@ function Person({ id, firstName, lastName, address, refresh }) {
   };
 
   return (
-    <div className="card">
+    <div>
       {!editMode ? (
         <>
           <h1>
-            {id}: {firstName} {lastName}{" "}
+            {id} {firstName} {lastName}
           </h1>
           <p>
-            {address.number} {address.street}
+            {number} {street}
           </p>
           <p>
-            {address.city}, {address.state} {address.zip}
+            {city} {state} {zip}
           </p>
-          <button onClick={() => setEditMode(!editMode)}>Edit</button>
+          a<button onClick={() => setEditMode(!editMode)}>Edit</button>
           <button onClick={(e) => deletePerson(e, id)}>Delete</button>
         </>
       ) : (
         <form>
           <input
+            type="text"
             name="praenomens"
             id="praenomens"
             placeholder="praenomens"
             value={praenomens}
             onChange={onChange}
-            required
-          />
+          />{" "}
           <input
+            type="text"
             name="cognomen"
             id="cognomen"
             placeholder="cognomen"
             value={cognomen}
             onChange={onChange}
-            required
-          />
+          />{" "}
           <input
+            type="text"
             name="number"
             id="number"
             placeholder="number"
             value={number}
             onChange={onChange}
-            required
-          />
+          />{" "}
           <input
+            type="text"
             name="street"
             id="street"
             placeholder="street"
             value={street}
             onChange={onChange}
-            required
-          />
+          />{" "}
           <input
+            type="text"
             name="city"
             id="city"
             placeholder="city"
             value={city}
             onChange={onChange}
-            required
-          />
+          />{" "}
           <input
+            type="text"
             name="state"
             id="state"
             placeholder="state"
             value={state}
             onChange={onChange}
-            required
-          />
+          />{" "}
           <input
+            type="text"
             name="zip"
             id="zip"
             placeholder="zip"
             value={zip}
             onChange={onChange}
-            required
           />
           <button onClick={(e) => submitEdit(e, id)}>Submit Edit</button>
-          <button onClick={cancelHelper}>Cancel</button>
+          <button onClick={cancelEditHelper}>Cancel</button>
         </form>
       )}
     </div>

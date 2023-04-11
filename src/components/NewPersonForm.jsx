@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-import "./Person.css";
-
 function NewPersonForm(props) {
-  const [newPerson, setNewPerson] = useState({
+  const [formData, setFormData] = useState({
     praenomens: [""],
     cognomen: "",
     number: "",
@@ -15,19 +13,19 @@ function NewPersonForm(props) {
     zip: "",
   });
 
-  const { praenomens, cognomen, number, street, city, state, zip } = newPerson;
+  const { praenomens, cognomen, number, street, city, state, zip } = formData;
 
   const navigate = useNavigate();
 
   const onChange = (e) => {
     if (e.target.name === "praenomens") {
-      setNewPerson((p) => ({
-        ...p,
+      setFormData((z) => ({
+        ...z,
         [e.target.name]: e.target.value.split(),
       }));
     } else {
-      setNewPerson((p) => ({
-        ...p,
+      setFormData((z) => ({
+        ...z,
         [e.target.name]: e.target.value,
       }));
     }
@@ -38,15 +36,14 @@ function NewPersonForm(props) {
 
     const res = await axios.post(
       "http://localhost:8080/api/v1/people",
-      newPerson
+      formData
     );
     console.log(res);
-
     navigate("/");
   };
 
   return (
-    <form onSubmit={onSubmit} className="card card-form">
+    <form onSubmit={onSubmit}>
       <input
         type="text"
         name="praenomens"
@@ -54,8 +51,7 @@ function NewPersonForm(props) {
         placeholder="praenomens"
         value={praenomens}
         onChange={onChange}
-        required
-      />
+      />{" "}
       <input
         type="text"
         name="cognomen"
@@ -63,8 +59,7 @@ function NewPersonForm(props) {
         placeholder="cognomen"
         value={cognomen}
         onChange={onChange}
-        required
-      />
+      />{" "}
       <input
         type="text"
         name="number"
@@ -72,8 +67,7 @@ function NewPersonForm(props) {
         placeholder="number"
         value={number}
         onChange={onChange}
-        required
-      />
+      />{" "}
       <input
         type="text"
         name="street"
@@ -81,8 +75,7 @@ function NewPersonForm(props) {
         placeholder="street"
         value={street}
         onChange={onChange}
-        required
-      />
+      />{" "}
       <input
         type="text"
         name="city"
@@ -90,8 +83,7 @@ function NewPersonForm(props) {
         placeholder="city"
         value={city}
         onChange={onChange}
-        required
-      />
+      />{" "}
       <input
         type="text"
         name="state"
@@ -99,8 +91,7 @@ function NewPersonForm(props) {
         placeholder="state"
         value={state}
         onChange={onChange}
-        required
-      />
+      />{" "}
       <input
         type="text"
         name="zip"
@@ -108,7 +99,6 @@ function NewPersonForm(props) {
         placeholder="zip"
         value={zip}
         onChange={onChange}
-        required
       />
       <button>Submit</button>
     </form>
