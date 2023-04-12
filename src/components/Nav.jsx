@@ -1,9 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./Nav.css";
 
-function Nav() {
+function Nav(props) {
   return (
-    <div style={{ justifyContent: "space-evenly", display: "flex" }}>
+    <div className="header">
       <Link to="/">Home</Link>
       <Link to="/form">Form</Link>
     </div>

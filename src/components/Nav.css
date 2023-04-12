@@ -1,0 +1,22 @@
+.header {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #444654;
+    height: 2rem;
+    align-items: center;
+    top: 0;
+    position: sticky;
+    border-bottom: 1px solid #242424;
+}
+
+.header a {
+    text-decoration: none;
+    color: white;
+    padding: .25rem;
+}
+
+.header a:hover {
+    background-color: #5f6275;
+    padding: .25rem;
+    border-radius: 6px;
+}

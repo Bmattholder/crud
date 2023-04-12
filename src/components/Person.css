@@ -1,52 +1,31 @@
 .card {
-    background-color: #434343;
-    color: #8d8a8a;
+    background-color: #444654;
     width: 20rem;
     text-align: center;
-    margin: 1.5rem auto;
-    padding: .5rem;
+    padding: .3rem;
+    align-items: center;
     border-radius: 12px;
-    border: 0;
-    box-shadow: 0 0 10px goldenrod;
-}
-
-.card input {
-    width: 90%;
-    background-color: #8d8a8a;
-    color: #ccc2c2;
-    font-size: medium;
-    border: 0;
-    margin: .1rem;
-    border-radius: 3px;
-}
-
-.card input::placeholder {
-    color: #ccc2c2;
-}
-
-.card input:focus{
-    outline: 0;
-    border-bottom: 2px solid goldenrod;
+    color: white;
+    margin: 1rem auto;
 }
 
 .card button {
-    margin: .25rem;
-    padding: .5rem;
+    margin: .333rem;
+    padding: .333rem;
     border: 0;
-    border-radius: 7px;
-    background-color: #8d8a8a;
-    color: goldenrod;
+    border-radius: 5px;
     font-size: medium;
+    background-color: #5f6275;
+    color: white;
 }
 
-.card button:hover {
-    background-color: goldenrod;
-    color: #8d8a8a;
-    transition: .4s;
-}
-
-.card-form {
-    margin-top: 10%;
-    padding: 1rem;
-
+.card input {
+    width: 80%;
+    background-color: #5f6275;
+    color: white;
+    margin: .1rem;
+    border-radius: 3px;
+    border: 0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    font-size: medium;
 }

@@ -1,18 +1,41 @@
-.container {
-	margin-left: 10%;
-	margin-top: 10%;
+.new-person-form {
+    background-color: #444654;
+    width: 33%;
+    margin: 10% auto;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 14px;
 }
 
-input[type=text] {
-  padding: 10px;
-	margin: 10px 0;
+.new-person-form input {
+    width: 80%;
+    background-color: #5f6275;
+    color: white;
+    margin: .1rem;
+    border-radius: 3px;
+    border: 0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    font-size: medium;
 }
 
-.btn {
-	width: 338px;
-	color: #fff;
-  background-color: #337ab7;
-  border-color: #2e6da4;
-	border-radius: 12px;
-	border: none;
+.new-person-form input:focus {
+    outline: 0;
+    border-bottom: 1px solid goldenrod;
+}
+
+.new-person-form input::placeholder {
+    color: #afaeae;
+}
+
+.new-person-form button {
+    margin: .75rem;
+    border: 0;
+    border-radius: 5px;
+    font-size: medium;
+    background-color: #5f6275;
+    color: white;
+}
+
+.new-person-form button:hover {
+    background-color: #72768c;
 }

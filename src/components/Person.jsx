@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+import "./Person.css";
+
 function Person({ id, firstName, lastName, address, refresh }) {
   const [editMode, setEditMode] = useState(false);
   const [editingPerson, setEditingPerson] = useState({
@@ -16,34 +18,32 @@ function Person({ id, firstName, lastName, address, refresh }) {
   const { praenomens, cognomen, number, street, city, state, zip } =
     editingPerson;
 
+  const url = "http://localhost:8080/api/v1/people/";
+
+  const submitEdit = async (e) => {
+    e.preventDefault();
+
+    const res = await axios.patch(url + id, editingPerson);
+    console.log(res);
+    refresh();
+    setEditMode(!editMode);
+  };
+
   const onChange = (e) => {
     if (e.target.name === "praenomens") {
-      setEditingPerson((s) => ({
-        ...s,
+      setEditingPerson((prevState) => ({
+        ...prevState,
         [e.target.name]: e.target.value.split(),
       }));
     } else {
-      setEditingPerson((s) => ({
-        ...s,
+      setEditingPerson((prevState) => ({
+        ...prevState,
         [e.target.name]: e.target.value,
       }));
     }
   };
 
-  const submitEdit = async (e, id) => {
-    e.preventDefault();
-
-    const res = await axios.patch(
-      "http://localhost:8080/api/v1/people/" + id,
-      editingPerson
-    );
-    console.log(res);
-    setEditMode(!editMode);
-    refresh();
-  };
-
   const cancelEdit = () => {
-    setEditMode(!editMode);
     setEditingPerson({
       praenomens: firstName,
       cognomen: lastName,
@@ -53,22 +53,23 @@ function Person({ id, firstName, lastName, address, refresh }) {
       state: address.state,
       zip: address.zip,
     });
+    setEditMode(!editMode);
   };
 
   const deletePerson = async (e, id) => {
     e.preventDefault();
 
-    const res = await axios.delete("http://localhost:8080/api/v1/people/" + id);
+    const res = await axios.delete(url + id);
     console.log(res);
     refresh();
   };
 
   return (
-    <div>
+    <div className="card">
       {!editMode ? (
         <>
           <h1>
-            {id}: {firstName} {lastName}
+            {firstName} {lastName}
           </h1>
           <p>
             {number} {street}
@@ -144,7 +145,7 @@ function Person({ id, firstName, lastName, address, refresh }) {
             placeholder="Zip"
             required
           />
-          <button onClick={(e) => submitEdit(e, id)}>Submit Edit</button>
+          <button onClick={(e) => submitEdit(e, id)}>Update</button>
           <button onClick={cancelEdit}>Cancel</button>
         </form>
       )}
