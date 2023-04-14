@@ -1,0 +1,31 @@
+.card {
+    background-color: #444654;
+    width: 20rem;
+    text-align: center;
+    padding: .3rem;
+    align-items: center;
+    border-radius: 12px;
+    color: white;
+    margin: 1rem auto;
+}
+
+.card button {
+    margin: .333rem;
+    padding: .333rem;
+    border: 0;
+    border-radius: 5px;
+    font-size: medium;
+    background-color: #5f6275;
+    color: white;
+}
+
+.card input {
+    width: 80%;
+    background-color: #5f6275;
+    color: white;
+    margin: .1rem;
+    border-radius: 3px;
+    border: 0;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    font-size: medium;
+}
