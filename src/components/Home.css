@@ -1,0 +1,97 @@
+.subheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background-color: #444654;
+}
+
+.subheader div {
+    margin: 0 .75rem;
+}
+
+
+.size, .filter {
+    color: white;
+    margin: 1rem;
+}
+
+.size select, .filter select {
+    background-color: #5f6275;
+    border: 0;
+    border-radius: 3px;
+    color: white;
+    font-size: medium;
+}
+
+.search {
+    margin: .5rem;
+}
+
+.search input {
+    background-color: #5f6275;
+    border: 0;
+    border-radius: 6px;
+    margin: .25rem;
+    padding: .25rem;
+    color: white;
+    font-size: medium;
+}
+
+.search input::placeholder {
+    color: white;
+    font-size: medium;
+}
+
+.search input:focus {
+    outline: 0;
+}
+
+.search button, .filter button {
+    margin: .333rem;
+    padding: .2rem;
+    border: 0;
+    border-radius: 5px;
+    font-size: medium;
+    background-color: #5f6275;
+    color: white;
+}
+
+.page-nav {
+    width: 30%;
+    margin: 2rem auto;
+    text-align: center;
+}
+
+.page-nav button {
+    margin: .333rem;
+    border: 0;
+    border-radius: 5px;
+    font-size: medium;
+    background-color: #5f6275;
+    color: white;
+}
+
+.page-nav button:disabled {
+    background-color: #30313b;
+    cursor: not-allowed;
+    color: #5f6275;
+}
+
+.active-number {
+    color: goldenrod !important;
+}
+
+.sort {
+    margin: auto;
+    text-align: center;
+}
+
+.sort button {
+    margin: .333rem;
+    border: 0;
+    border-radius: 5px;
+    font-size: medium;
+    background-color: #5f6275;
+    color: white;
+}
