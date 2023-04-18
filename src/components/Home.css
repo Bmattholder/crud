@@ -1,0 +1,19 @@
+.subheader {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #444654;
+    height: 2rem;
+    align-items: center;
+}
+
+.pagination {
+    margin: 1rem;
+    text-align: center;
+}
+
+.list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-top: 4rem;
+}

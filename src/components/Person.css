@@ -1,0 +1,9 @@
+.card {
+    border-radius: 12px;
+    width: 20rem;
+    margin: 1rem auto;
+    text-align: center;
+    padding: 1rem;
+    background-color: #444654;
+    box-shadow: 0 0 10px goldenrod;
+ }
